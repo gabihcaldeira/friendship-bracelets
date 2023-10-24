@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Button, Card, Form, Table } from "react-bootstrap";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaSlash } from "react-icons/fa";
 import { countLetters } from "../../utils/functions";
-import { CustomCard, FormGroup } from "./styles";
+import {
+  CustomCard,
+  FormGroup,
+  TDbtn,
+  TDchars,
+  TDcheck,
+  TDstring,
+} from "./styles";
 
 const Dashboard = () => {
   const [input, setInput] = useState("");
   const [responses, setResponses] = useState([]);
+  const [checkedRes, setCheckedRes] = useState([]);
 
   const handleAdd = () => {
     const lettersInInput = countLetters(input);
@@ -46,31 +54,47 @@ const Dashboard = () => {
             {responses &&
               responses.length > 0 &&
               responses.map(({ str, chars }, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <Button type="button" onClick={() => handleRemove(idx)}>
-                      <AiOutlineMinus />
-                    </Button>
-                  </td>
-
-                  <td>
+                <tr key={idx} className="d-flex align-items-center ">
+                  <TDcheck>
                     <Form.Check
                       type="checkbox"
                       name={`${idx}-${str}`}
                       value={idx}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setCheckedRes((update) => {
+                            return [...update, e.target.value];
+                          });
+                        } else {
+                          const aux = checkedRes.filter(
+                            (e) => e !== e.target.value
+                          );
+                          setCheckedRes(aux);
+                        }
+                      }}
                     />
-                  </td>
+                  </TDcheck>
 
-                  <td>{str}</td>
+                  <TDstring className="text-capitalize fw-bold">{str}</TDstring>
 
-                  <td>
-                    {chars.map(({ letter, qnt }) => (
+                  <TDchars>
+                    {chars.map((e, idx) => (
                       <>
-                        <span className="text-bold">{letter} -</span>
-                        <span>{qnt}</span>
+                        <span className="letter">{e}</span>
+                        {idx !== chars.length - 1 && (
+                          <span className="separator">
+                            <FaSlash size={18} />
+                          </span>
+                        )}
                       </>
                     ))}
-                  </td>
+                  </TDchars>
+
+                  <TDbtn>
+                    <Button type="button" onClick={() => handleRemove(idx)}>
+                      <FaMinus size={18} />
+                    </Button>
+                  </TDbtn>
                 </tr>
               ))}
           </tbody>

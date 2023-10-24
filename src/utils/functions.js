@@ -33,10 +33,7 @@ export const countLetters = (string) => {
   alphabet.forEach((letter) => {
     const qntLetter = strArr.filter((e) => e.toUpperCase() === letter);
     if (qntLetter.length > 0) {
-      res.push({
-        letter,
-        qnt: qntLetter.length,
-      });
+      res.push(`${letter}(${qntLetter.length})`);
     }
   });
 

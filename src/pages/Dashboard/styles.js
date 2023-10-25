@@ -47,12 +47,22 @@ export const FormGroup = styled(Form.Group)`
       width: 40px;
       padding: 3px;
     }
+
+    &:hover, &:active, &:focus-visible {
+      color: white;
+    }
   }
 `;
 
 export const TBody = styled.tbody`
   max-height: 500px;
   overflow-y: scroll;
+
+  > tr > td {
+    display: flex;
+    height: 50px;
+    align-items: center;
+  }
 `;
 
 export const TDbtn = styled.td`
@@ -100,7 +110,7 @@ export const TDstring = styled.td`
 
 export const TDchars = styled.td`
   min-width: 100px;
-  max-width: 160px;
+  max-width: 150px;
   overflow: scroll;
   white-space: nowrap;
   > .letter {

@@ -1,7 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap");
+
+* {
+  font-family: "Nunito", sans-serif;
+}
+
 .App {
   text-align: center;
-  color: rgba(157, 13, 253, 0.25);
-  color: rgba(128, 0, 128, 0.256);
+}
+
+img {
+  width: 95%;
+
+  @media (min-width: 768px) {
+    width: 55%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 35%;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -15,4 +31,18 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.btn.btn-primary {
+  background-color: purple;
+  border-color: purple;
+  box-shadow: 0 0 0 0.25rem rgba(128, 0, 128, 0.25);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:focus-visible {
+  background-color: rgb(78, 6, 78) !important;
+  border-color: rgb(78, 6, 78) !important;
+  box-shadow: 0 0 0 0.25rem rgba(78, 6, 78, 0.25) !important;
 }

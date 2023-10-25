@@ -1,4 +1,4 @@
-import { Card, Form } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import styled from "styled-components";
 
 export const CustomCard = styled(Card)`
@@ -44,6 +44,11 @@ export const FormGroup = styled(Form.Group)`
       padding: 3px;
     }
   }
+`;
+
+export const TBody = styled.tbody`
+  max-height: 500px;
+  overflow-y: scroll;
 `;
 
 export const TDbtn = styled.td`
@@ -106,5 +111,29 @@ export const TDchars = styled.td`
 
   @media (min-width: 768px) {
     max-width: 320px;
+  }
+`;
+
+export const BtnFooter = styled(Button)`
+  width: 100px;
+  font-weight: 600;
+`;
+
+export const TotalBody = styled.tbody`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  > tr {
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+
+    > td {
+      font-size: 20px;
+      font-weight: 700;
+      color: purple;
+    }
   }
 `;

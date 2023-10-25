@@ -1,21 +1,33 @@
-import { useState } from "react";
-import { Button, Card, Form, Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  ListGroup,
+  Row,
+  Table,
+} from "react-bootstrap";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { FaSlash } from "react-icons/fa";
 import { countLetters } from "../../utils/functions";
 import {
+  BtnFooter,
   CustomCard,
   FormGroup,
+  TBody,
   TDbtn,
   TDchars,
   TDcheck,
   TDstring,
+  TotalBody,
 } from "./styles";
 
 const Dashboard = () => {
   const [input, setInput] = useState("");
   const [responses, setResponses] = useState([]);
   const [checkedRes, setCheckedRes] = useState([]);
+  const [totalChars, setTotalChars] = useState([]);
 
   const handleAdd = () => {
     const lettersInInput = countLetters(input);
@@ -32,6 +44,19 @@ const Dashboard = () => {
     const aux = responses.filter((e, idx) => idx !== id);
     setResponses(aux);
   };
+
+  const handleTotal = () => {
+    const checked = responses.filter((e, idx) => checkedRes.includes(idx));
+
+    const checkedStr = checked.map(({ str }) => str);
+
+    const totalLetters = countLetters(checkedStr.join(";"));
+    setTotalChars(totalLetters);
+    console.log(totalLetters);
+  };
+  useEffect(() => {
+    // console.log("checkedRes", checkedRes);
+  }, [checkedRes]);
 
   return (
     <CustomCard>
@@ -50,7 +75,7 @@ const Dashboard = () => {
 
       <Card.Body>
         <Table>
-          <tbody>
+          <TBody>
             {responses &&
               responses.length > 0 &&
               responses.map(({ str, chars }, idx) => (
@@ -63,12 +88,10 @@ const Dashboard = () => {
                       onChange={(e) => {
                         if (e.target.checked) {
                           setCheckedRes((update) => {
-                            return [...update, e.target.value];
+                            return [...update, idx];
                           });
                         } else {
-                          const aux = checkedRes.filter(
-                            (e) => e !== e.target.value
-                          );
+                          const aux = checkedRes.filter((e) => e !== idx);
                           setCheckedRes(aux);
                         }
                       }}
@@ -97,9 +120,40 @@ const Dashboard = () => {
                   </TDbtn>
                 </tr>
               ))}
-          </tbody>
+          </TBody>
         </Table>
       </Card.Body>
+
+      <ListGroup>
+        <ListGroup.Item className="d-flex align-items-center justify-content-start px-3">
+          <BtnFooter type="button" onClick={handleTotal} className="me-3">
+            Total
+          </BtnFooter>
+
+          <BtnFooter
+            type="button"
+            onClick={() => {
+              setResponses([]);
+              setTotalChars([]);
+              setCheckedRes([]);
+            }}
+          >
+            Cancelar
+          </BtnFooter>
+        </ListGroup.Item>
+
+        {totalChars?.length > 0 && (
+          <ListGroup.Item>
+            <TotalBody>
+              {totalChars.map((e, idx) => (
+                <tr key={idx}>
+                  <td>{e}</td>
+                </tr>
+              ))}
+            </TotalBody>
+          </ListGroup.Item>
+        )}
+      </ListGroup>
     </CustomCard>
   );
 };

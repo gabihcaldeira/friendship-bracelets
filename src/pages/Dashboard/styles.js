@@ -1,4 +1,4 @@
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, ListGroup } from "react-bootstrap";
 import styled from "styled-components";
 
 export const CustomCard = styled(Card)`
@@ -13,8 +13,11 @@ export const CustomCard = styled(Card)`
     width: 50%;
   }
 
-  > .card-body{
+  > .card-body {
     padding: 8px 5px !important;
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 `;
 
@@ -48,16 +51,15 @@ export const FormGroup = styled(Form.Group)`
       padding: 3px;
     }
 
-    &:hover, &:active, &:focus-visible {
+    &:hover,
+    &:active,
+    &:focus-visible {
       color: white;
     }
   }
 `;
 
 export const TBody = styled.tbody`
-  max-height: 500px;
-  overflow-y: scroll;
-
   > tr > td {
     display: flex;
     height: 50px;
@@ -98,19 +100,32 @@ export const TDcheck = styled.td`
 `;
 
 export const TDstring = styled.td`
-  min-width: 100px;
-  max-width: 130px;
-  overflow: scroll;
-  white-space: nowrap;
+  width: 40%;
+  > div {
+    max-width: 126px;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  @media (min-width: 425px) {
+    width: 45%;
+    > div {
+      max-width: 170px;
+    }
+  }
 
   @media (min-width: 768px) {
-    max-width: 300px;
+    width: 50%;
+    > div {
+      max-width: 300px;
+    }
   }
 `;
 
 export const TDchars = styled.td`
-  min-width: 100px;
-  max-width: 150px;
+  width: 40%;
+  max-width: 126px;
   overflow: scroll;
   white-space: nowrap;
   > .letter {
@@ -123,14 +138,37 @@ export const TDchars = styled.td`
     color: purple;
   }
 
+  @media (min-width: 425px) {
+    width: 45%;
+    max-width: 170px;
+  }
   @media (min-width: 768px) {
-    max-width: 320px;
+    width: 50%;
+    max-width: 300px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 1px;
+  }
+`;
+
+export const ListGroupItem = styled(ListGroup.Item)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 5px;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+    gap: 10px;
   }
 `;
 
 export const BtnFooter = styled(Button)`
-  width: 100px;
-  font-weight: 600;
+  width: 85px;
+  padding: 8px;
+  font-weight: 700 !important;
 `;
 
 export const TotalBody = styled.tbody`

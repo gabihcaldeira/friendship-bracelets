@@ -15,6 +15,7 @@ import {
   BtnFooter,
   CustomCard,
   FormGroup,
+  ListGroupItem,
   TBody,
   TDbtn,
   TDchars,
@@ -40,8 +41,10 @@ const Dashboard = () => {
     setInput("");
   };
 
-  const handleRemove = (id) => {
-    const aux = responses.filter((e, idx) => idx !== id);
+  const handleRemove = () => {
+    const aux = responses.filter((e, idx) => !checkedRes.includes(idx));
+
+    setCheckedRes([]);
     setResponses(aux);
   };
 
@@ -79,12 +82,16 @@ const Dashboard = () => {
             {responses &&
               responses.length > 0 &&
               responses.map(({ str, chars }, idx) => (
-                <tr key={idx} className="d-flex align-items-center ">
+                <tr
+                  key={idx}
+                  className="d-flex align-items-center justify-content-center"
+                >
                   <TDcheck>
                     <Form.Check
                       type="checkbox"
                       name={`${idx}-${str}`}
                       value={idx}
+                      checked={checkedRes.includes(idx)}
                       onChange={(e) => {
                         if (e.target.checked) {
                           setCheckedRes((update) => {
@@ -98,7 +105,9 @@ const Dashboard = () => {
                     />
                   </TDcheck>
 
-                  <TDstring className="text-capitalize fw-bold">{str}</TDstring>
+                  <TDstring className="text-capitalize fw-bold">
+                    <div>{str}</div>
+                  </TDstring>
 
                   <TDchars>
                     {chars.map((e, idx) => (
@@ -112,12 +121,6 @@ const Dashboard = () => {
                       </>
                     ))}
                   </TDchars>
-
-                  <TDbtn>
-                    <Button type="button" onClick={() => handleRemove(idx)}>
-                      <FaMinus size={18} />
-                    </Button>
-                  </TDbtn>
                 </tr>
               ))}
           </TBody>
@@ -125,8 +128,8 @@ const Dashboard = () => {
       </Card.Body>
 
       <ListGroup>
-        <ListGroup.Item className="d-flex align-items-center justify-content-start px-3">
-          <BtnFooter type="button" onClick={handleTotal} className="me-3">
+        <ListGroupItem>
+          <BtnFooter type="button" onClick={handleTotal}>
             Total
           </BtnFooter>
 
@@ -140,7 +143,11 @@ const Dashboard = () => {
           >
             Cancelar
           </BtnFooter>
-        </ListGroup.Item>
+
+          <BtnFooter type="button" onClick={handleRemove}>
+            Remover
+          </BtnFooter>
+        </ListGroupItem>
 
         {totalChars?.length > 0 && (
           <ListGroup.Item>

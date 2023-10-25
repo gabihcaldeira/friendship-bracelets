@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
 
 * {
   font-family: "Nunito", sans-serif;
@@ -30,7 +30,16 @@ img {
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: purple;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(78, 6, 78);
 }
 
 .btn.btn-primary {
@@ -44,4 +53,10 @@ img {
   background-color: rgb(78, 6, 78) !important;
   border-color: rgb(78, 6, 78) !important;
   box-shadow: 0 0 0 0.25rem rgba(78, 6, 78, 0.25) !important;
+}
+
+.form-control:focus-visible,
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }

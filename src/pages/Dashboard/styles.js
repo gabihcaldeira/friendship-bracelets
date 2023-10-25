@@ -12,6 +12,10 @@ export const CustomCard = styled(Card)`
   @media (min-width: 1024px) {
     width: 50%;
   }
+
+  > .card-body{
+    padding: 8px 5px !important;
+  }
 `;
 
 export const FormGroup = styled(Form.Group)`
@@ -85,7 +89,7 @@ export const TDcheck = styled.td`
 
 export const TDstring = styled.td`
   min-width: 100px;
-  max-width: 120px;
+  max-width: 130px;
   overflow: scroll;
   white-space: nowrap;
 
@@ -96,7 +100,7 @@ export const TDstring = styled.td`
 
 export const TDchars = styled.td`
   min-width: 100px;
-  max-width: 190px;
+  max-width: 160px;
   overflow: scroll;
   white-space: nowrap;
   > .letter {

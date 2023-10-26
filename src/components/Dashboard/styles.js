@@ -19,33 +19,44 @@ export const FormGroup = styled(Form.Group)`
   gap: 10px;
 
   > input.form-control {
-    height: 60px;
-    font-size: 25px;
+    height: 35px;
+    font-size: 18px;
     border: 1px solid purple;
 
     @media (min-width: 768px) {
-      font-size: 18px;
-      height: 40px;
+      font-size: 20px;
+      height: 45px;
     }
   }
 
   > button.btn.btn-primary {
-    height: 60px;
-    width: 60px;
+    height: 35px;
+    width: 35px;
+    padding: 0px 6.5px;
     background-color: transparent;
     color: purple;
     border: 2.5px solid purple;
 
     @media (min-width: 768px) {
-      height: 40px;
-      width: 40px;
-      padding: 3px;
+      height: 45px;
+      width: 45px;
+      padding: 0px 9.5px;
     }
 
     &:hover,
     &:active,
     &:focus-visible {
       color: white;
+    }
+
+    > svg {
+      height: 18px;
+      width: 18px;
+
+      @media (min-width: 768px) {
+        height: 22px;
+        width: 22px;
+      }
     }
   }
 `;

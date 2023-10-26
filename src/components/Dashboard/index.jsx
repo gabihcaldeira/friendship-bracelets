@@ -79,7 +79,7 @@ const Dashboard = () => {
             onChange={(e) => setInput(e.target.value)}
           />
           <Button type="button" onClick={handleAdd}>
-            <FaPlus size={30} />
+            <FaPlus />
           </Button>
         </FormGroup>
       </Card.Header>

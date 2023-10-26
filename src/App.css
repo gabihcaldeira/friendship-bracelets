@@ -72,4 +72,9 @@ img {
   .App {
     width: 50%;
   }
+
+  img {
+    width: 70%;
+    height: 150px;
+  }
 }

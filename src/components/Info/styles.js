@@ -58,7 +58,7 @@ export const ContainerInfo = styled.div`
     }
 
     &::-webkit-scrollbar {
-      display: none;
+      width: 1px;
     }
   }
 `;

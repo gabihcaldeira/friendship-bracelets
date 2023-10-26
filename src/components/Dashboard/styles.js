@@ -2,16 +2,7 @@ import { Button, Card, Form, ListGroup } from "react-bootstrap";
 import styled from "styled-components";
 
 export const CustomCard = styled(Card)`
-  width: 95%;
-  margin: 25px auto;
-
-  @media (min-width: 768px) {
-    width: 75%;
-  }
-
-  @media (min-width: 1024px) {
-    width: 50%;
-  }
+  width: 100%;
 
   > .card-body {
     padding: 8px 5px !important;

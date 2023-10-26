@@ -6,18 +6,14 @@
 
 .App {
   text-align: center;
+  width: 95%;
+  margin: 25px auto;
 }
 
 img {
-  width: 95%;
-
-  @media (min-width: 768px) {
-    width: 55%;
-  }
-
-  @media (min-width: 1024px) {
-    width: 35%;
-  }
+  width: 90%;
+  margin-top: 15px;
+  height: 100px;
 }
 
 @keyframes App-logo-spin {
@@ -59,4 +55,21 @@ img {
 .form-control:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+@media (min-width: 768px) {
+  img {
+    width: 40%;
+    height: 150px;
+  }
+
+  .App {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .App {
+    width: 50%;
+  }
 }

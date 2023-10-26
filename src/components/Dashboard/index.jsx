@@ -37,7 +37,7 @@ const Dashboard = () => {
     setResponses((update) => {
       return [...update, obj];
     });
-
+    localStorage.setItem("frases", JSON.stringify([...responses, obj]));
     setInput("");
   };
 
@@ -57,9 +57,17 @@ const Dashboard = () => {
     setTotalChars(totalLetters);
     console.log(totalLetters);
   };
+
+  useEffect(() => {
+    const storage = localStorage.getItem("frases");
+    if (storage) {
+      setResponses(JSON.parse(storage));
+    }
+  }, []);
+
   useEffect(() => {
     // console.log("checkedRes", checkedRes);
-  }, [checkedRes]);
+  }, [responses]);
 
   return (
     <CustomCard>
